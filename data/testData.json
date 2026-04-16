@@ -1,0 +1,25 @@
+{
+  "baseUrl": "https://mnsaj.byklabs.com/",
+  "validUser": {
+    "email": "waridarshad1@gmail.com",
+    "password": "@Pakistan123"
+  },
+
+  "invalidUser": {
+    "email": "warid.com",
+    "password": "WrongPassword"
+  },
+
+  "newValidUser": {
+    "firstName": "Warid",
+    "lastName": "Arshad",
+    "phone": "3363510831",
+    "email": "warid@gmail.com",
+    "password": "@Pakistan123",
+    "confirmPassword": "TestPassword123"
+  },
+  "products": {
+    "searchTerm": "shirt",
+    "expectedProductName": "Casual Cotton Shirt"
+  }
+}
