@@ -1,8 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
 
-
 export default defineConfig({
   testDir: './tests',
+
+  globalSetup: './global-setup.js',
+
   /* Run tests in files in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -16,26 +18,48 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     baseURL: 'https://mnsaj.byklabs.com/',
-    trace: 'on-first-retry', // Pehli bar fail hone par trace record karega
-    screenshot: 'only-on-failure', // Sirf fail hone par screenshot lega
-    video: 'retain-on-failure', // Fail hone par video save karega, pass hone par delete kar dega
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
   },
 
-  /* Configure projects for major browsers */
   projects: [
+
+    //Authentication tests — No session 
     {
-      name: 'chromium',
+      name: 'authentication',
+      testMatch: '**/authentication/**',
       use: { ...devices['Desktop Chrome'] },
     },
 
+    //Chromium — will use login Session
+    {
+      name: 'chromium',
+      testIgnore: '**/authentication/**',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: '.auth/user.json',
+      },
+    },
+
+    //Firefox — 
     // {
     //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
+    //   testIgnore: '**/authentication/**',
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //     storageState: '.auth/user.json',
+    //   },
     // },
 
+    //Webkit (Safari) — Session
     // {
     //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
+    //   testIgnore: '**/authentication/**',
+    //   use: {
+    //     ...devices['Desktop Safari'],
+    //     storageState: '.auth/user.json',
+    //   },
     // },
 
     /* Test against mobile viewports. */
@@ -57,6 +81,7 @@ export default defineConfig({
     //   name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
+
   ],
 
   /* Run your local dev server before starting the tests */
@@ -66,4 +91,3 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-
