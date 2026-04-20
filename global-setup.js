@@ -8,9 +8,9 @@ async function globalSetup() {
     const page = await browser.newPage();
 
     // go to login page
-    await page.goto('https://mnsaj.byklabs.com/login');
+    await page.goto('https://mnsaj.byklabs.com/login', { timeout: 100000 });
 
-    // Email aur password
+    // Email and password
     await page.locator('#email').fill(data.validUser.email);
     await page.locator('#email').blur();
     await page.waitForTimeout(500);

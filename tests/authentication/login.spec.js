@@ -7,8 +7,11 @@ test.describe('Login Functionality', () => {
     
     test.beforeEach(async ({ poManager }) => {
         const loginPage = poManager.getLoginPage();
+        const homePage = poManager.getHomePage();
         await poManager.getPage().context().clearCookies();
         await loginPage.goto();
+        await homePage.changeLanguageToEnglish();
+        await poManager.getPage().getByRole('button', { name: 'Login' }).waitFor();
     });
 
     // Valid Login

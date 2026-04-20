@@ -4,11 +4,11 @@ class LoginPage {
     // Locators
     this.emailInput = page.locator("#email");
     this.passwordInput = page.locator("#password");
-    this.loginBtn = page.getByRole('button', {name: 'تسجيل الدخول'});
-    this.successToast = page.getByText('تم تسجيل الدخول بنجاح');
-    this.invalidEmailError = page.getByText('يجب أن يكون حقل البريد الإلكتروني عنوان بريد إلكتروني صالحًا');
-    this.invalidPasswordError = page.getByText('كلمة المرور غير صحيحة');
-    this.emailEmptyError = page.getByText('الرجاء إدخال البريد الالكتروني');
+    this.loginBtn = page.getByRole('button', {name: 'Login'});
+    this.successToast = page.getByText('Logged in successfully');
+    this.invalidEmailError = page.getByText('The email field must be a valid email address');
+    this.invalidPasswordError = page.getByText('The password is incorrect');
+    this.emailEmptyError = page.getByText('Email is required');
     this.passwordEmptyError = page.getByText('The password field is required.');
   }
 
